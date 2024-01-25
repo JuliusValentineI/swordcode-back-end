@@ -19,13 +19,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'api'
+    'corsheaders', # Core items http response
+    'rest_framework', # JSON Api created
+    'api' # Controller api
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -83,3 +85,37 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Rest framework
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
+# Corsheadres framework
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000'
+]
+
+# Especificy credentials by open web's <//>
+CORS_ALLOW_CREDENTIALS = True
+
+# Headers in petitions http
+CORS_ALLOW_HEADERS = (
+#    "accept",
+    "authorization",
+    "content-type",
+#    "user-agent",
+#    "x-csrftoken",
+#    "x-requested-with",
+)
+
+# Methods allowed other host
+CORS_ALLOW_METHODS = (
+    "DELETE",
+    "GET",
+#    "OPTIONS",
+#    "PATCH",
+    "POST",
+    "PUT",
+)

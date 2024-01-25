@@ -1,8 +1,19 @@
-from django.shortcuts import render
+#from django.shortcuts import render
 from rest_framework import viewsets
-from .serialize import PostsRepositorySerializer
-from .models import PostsRepository
+#from rest_framework.response import Response
+from .models import Article, File
+from .serialize import ArticleSerializer, FileSerializer
+"""
+--- PostsRepository methods 
+--- Views in database created's
+"""
+    
+class ArticleViewSet(viewsets.ModelViewSet):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    
 
-class PostsRepositoryViewSet(viewsets.ModelViewSet):
-    queryset = PostsRepository.objects.all()
-    serializer_class = PostsRepositorySerializer
+class FileViewSet(viewsets.ModelViewSet):
+    queryset = File.objects.all()
+    serializer_class = FileSerializer
+    
