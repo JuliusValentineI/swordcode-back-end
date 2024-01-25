@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import File, Article
+from .models import Files, Articles
 # Register your models here.
 
-admin.site.register(File)
-admin.site.register(Article)
+admin.site.register(Files)
+admin.site.register(Articles)

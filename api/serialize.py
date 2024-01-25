@@ -1,14 +1,14 @@
 from rest_framework import serializers
-from .models import Article, File
+from .models import Articles, Files
 
-class ArticleSerializer(serializers.ModelSerializer):
+class ArticlesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Article
+        model = Articles
         fields = '__all__'
         
 
-class FileSerializer(serializers.ModelSerializer):
+class FilesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = File
+        model = Files
         fields = '__all__'
 

@@ -17,23 +17,24 @@ def get_post_type():
 
 
 # Create your models here.
-class Article(models.Model):
+class Articles(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=200, default="")
     post_type = models.CharField(max_length=50, choices=get_post_type(), default=None)
     published_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
 
 
-class File(models.Model):
+class Files(models.Model):
     filename = models.CharField(max_length=255)
     filetype = models.CharField(max_length=255, default='text/markdown')
-    content = models.TextField()
+    content = models.TextField(default="###NONE")
     
     upload_to = 'api/files'
 
     article = models.ForeignKey(
-        Article,
+        Articles,
         on_delete=models.CASCADE,
         related_name='files',
         default=""
