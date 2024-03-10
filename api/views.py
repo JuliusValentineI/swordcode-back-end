@@ -40,4 +40,24 @@ def showFile(request):
     except ValueError:
         return JsonResponse({"error": "Invalid article id format"})
 
+def dataArticle(request):
+    try:
+        articleId = int(request.GET['article'])
+        article = Articles.objects.filter(id=articleId).first()
+
+        data = {
+            "id": article.id,
+            "title": article.title,
+            "description": article.description,
+            "post_type": article.post_type,
+            "published_at": article.published_at,
+            "update_at": article.update_at,
+            "is_active": article.is_active,
+        }
+        if article == None:
+            return JsonResponse({"error": "Invalid article"})
+
+        return JsonResponse(data)
+    except ValueError:
+        return JsonResponse({"error": "Invalid article id format"})
 
